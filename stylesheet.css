@@ -1,0 +1,68 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  background-color:#181818;
+  color:#FFFFFF;
+}
+
+.container{
+  display:flex;
+  margin-top:2em;
+  min-width:100%;
+  min-height:30em;
+}
+.toolbox{
+  padding-top:5em;
+  position:relative;
+  width:13em;
+}
+
+.canvas{
+  width:80%;
+  height:45em;
+}
+
+#canvas{
+  width:100%;
+  height:100%;
+  overflow-y: scroll;
+}
+
+#canvas:hover{
+  cursor:crosshair;
+}
+
+.toolbox-item{
+  width:3em;
+  margin-top:0.5em;
+  min-height:3em;
+  border:2px solid yellow;
+  border-left:none;
+  border-top-right-radius:0.5em;
+  border-bottom-right-radius:0.5em;
+  background-color:#252525;
+  display:flex;
+}
+
+.list .tool{
+  display: none;
+}
+
+.list:hover{
+  width:10.5em;
+}
+
+.list:hover li{
+  display: inline;
+}
+
+.list li{
+  margin:0.7em;
+}
+
+canvas{
+  background-color:cadetblue;
+  border-radius:5pt;
+}
+
+
