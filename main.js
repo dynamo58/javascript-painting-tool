@@ -1,23 +1,28 @@
 init();
 
+let xOffset = document.getElementById('frame').getBoundingClientRect().left + window.scrollX;
+let yOffset = document.getElementById('frame').getBoundingClientRect().top + window.scrollY;
+let strokeColor = "black";
 
-function getOffset() {
-    const rect = document.getElementById('frame').getBoundingClientRect();
-    return {
-      left: rect.left + window.scrollX,
-      top: rect.top + window.scrollY
-    };
+function changeFillColor(id){
+    document.getElementById('canvas').style.backgroundColor = document.getElementById(id).style.color;
 }
 
-const xOffset = getOffset().left;
-const yOffset = getOffset().top;
+function changeStrokeColor(id){
+    strokeColor = document.getElementById(id).style.color;
+}
+
+function calculateOffset(){
+    xOffset = document.getElementById('frame').getBoundingClientRect().left + window.scrollX;
+    yOffset = document.getElementById('frame').getBoundingClientRect().top + window.scrollY;
+}
 
 function init(){
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     
-    canvas.height = 0.8*window.innerHeight;
-    canvas.width = 0.8*window.innerWidth;
+    canvas.height = document.getElementById('frame').getBoundingClientRect().height;
+    canvas.width = document.getElementById('frame').getBoundingClientRect().width;
     
     let painting = false;
 
@@ -36,15 +41,22 @@ function init(){
         context.lineWidth = 5;
         context.lineCap = "round";
 
+        context.strokeStyle = strokeColor;
         context.lineTo(e.clientX-xOffset, e.clientY-yOffset);
         context.stroke();
         context.beginPath();
         context.moveTo(e.clientX-xOffset, e.clientY-yOffset)
     };
 
+    function erase(){
+        context.beginPath();
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.stroke();
+    }
+
     canvas.addEventListener('mousedown', startPainting);
     canvas.addEventListener('mouseup', stopPainting);
     canvas.addEventListener('mousemove', draw);
-
+    window.addEventListener('resize', calculateOffset);
+    document.getElementById('erase').addEventListener('click', erase);
 }
-
