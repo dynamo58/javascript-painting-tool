@@ -3,7 +3,6 @@ html, body {
   margin: 0;
   background-color:#181818;
   color:#FFFFFF;
-  overflow:hidden;
 }
 
 .container{
@@ -20,13 +19,12 @@ html, body {
 
 .canvas{
   width:90%;
-  height:45em;
+  height:100em;
 }
 
 #canvas{
   width:100%;
   height:100%;
-  overflow-y: scroll;
 }
 
 #canvas:hover{
@@ -59,6 +57,10 @@ html, body {
   flex-direction: row-reverse; 
 }
 
+.list{
+  flex-wrap:wrap;
+}
+
 .toolbox-standalone:hover{
   background-color:#303030;
 }
@@ -84,7 +86,7 @@ html, body {
 }
 
 canvas{
-  background-color:cadetblue;
+  background-color:#2e3644;
   border-radius:5pt;
 }
 
