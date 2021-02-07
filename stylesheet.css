@@ -61,6 +61,10 @@ html, body {
   flex-wrap:wrap;
 }
 
+.list input{
+  width:5em;
+}
+
 .toolbox-standalone:hover{
   background-color:#303030;
 }
@@ -74,7 +78,7 @@ html, body {
 }
 
 .list:hover{
-  width:10.5em;
+  width:10.2em;
 }
 
 .list:hover li{

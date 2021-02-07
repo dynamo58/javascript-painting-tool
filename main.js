@@ -1,11 +1,10 @@
 const post = document.getElementById("canvas");
-let xOffset =
-	document.getElementById("frame").getBoundingClientRect().left +
-	window.scrollX;
-let yOffset =
-	document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+let xOffset = document.getElementById("frame").getBoundingClientRect().left + window.scrollX;
+let yOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
 let strokeColor = "white";
 let strokeWidth = 5;
+
+document.getElementById('paintEff1').checked = false;
 
 function changeFillColor(id) {
 	document.getElementById(
@@ -23,7 +22,6 @@ function changeStrokeWidth(size) {
 }
 
 init();
-
 function init() {
 	const canvas = document.getElementById("canvas");
 	const context = canvas.getContext("2d");
@@ -48,21 +46,24 @@ function init() {
 	function draw(e) {
 		if (!painting) return;
 		context.lineWidth = strokeWidth;
+		context.lineJoin = "round";
 		context.lineCap = "round";
-
+		if (document.getElementById("paintEff1").checked == true){
+			context.shadowBlur = 10;
+			context.shadowColor = strokeColor;
+		}
+		else {
+			context.shadowBlur = 0;
+		}
 		context.strokeStyle = strokeColor;
 		context.lineTo(
-			e.clientX -
-				document.getElementById("frame").getBoundingClientRect().left +
-				window.scrollX,
+			e.clientX - document.getElementById("frame").getBoundingClientRect().left,
 			e.clientY - document.getElementById("frame").getBoundingClientRect().top
 		);
 		context.stroke();
 		context.beginPath();
 		context.moveTo(
-			e.clientX -
-				document.getElementById("frame").getBoundingClientRect().left +
-				window.scrollX,
+			e.clientX - document.getElementById("frame").getBoundingClientRect().left,
 			e.clientY - document.getElementById("frame").getBoundingClientRect().top
 		);
 	}
@@ -84,30 +85,16 @@ function init() {
 		});
 	}
 
+	function scrollOnCursorOverflow() {
+		if (e.clientY > window.innerHeight-3){
+			window.scrollBy(0, 5);
+		}
+	}
+
+	
 	canvas.addEventListener("mousedown", startPainting);
 	canvas.addEventListener("mouseup", stopPainting);
 	canvas.addEventListener("mousemove", draw, true);
+	canvas.addEventListener("pageshow", scrollOnCursorOverflow);
 	document.getElementById("screen").addEventListener("click", saveCanvas);
 }
-
-/*
-
-
-document.getElementById("image").onclick = function() {
-	var c = document.getElementById("canvas");
-	var ctx = c.getContext("2d");
-	var img = document.getElementById("picture.png");
-	ctx.drawImage(img, 10, 10);
-  }; 
-
-
-function calculateOffset() {
-	xOffset =
-		document.getElementById("frame").getBoundingClientRect().left +
-		window.scrollX;
-	yOffset =
-		document.getElementById("frame").getBoundingClientRect().top +
-		window.scrollY;
-}
-
-*/

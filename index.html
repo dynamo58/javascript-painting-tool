@@ -25,11 +25,12 @@
 
 		<div class="container" style="width: 100%">
 			<div class="toolbox">
-				<ul class="list toolbox-item">
+				<ul class="list toolbox-item" style="flex-wrap:wrap;">
 					<li class="tool0"><i class="fas fa-pencil-ruler"></i></li>
-					<li class="tool"><i class="fas fa-pencil-ruler"></i></li>
-					<li class="tool"><i class="fas fa-pencil-ruler"></i></li>
-					<li class="tool"><i class="fas fa-pencil-ruler"></i></li>
+					<li class="tool"><input type="checkbox" id="paintEff1" name="paintEff1"><label for="paintEff1"> Glow</label></li>
+					<!--<li class="tool"><input type="checkbox" id="paintEff2" name="paintEff1"><label for="paintEff2"> Glow</label></li>
+					<li class="tool"><input type="checkbox" id="paintEff3" name="paintEff1"><label for="paintEff3"> Glow</label></li>
+					<li class="tool"><input type="checkbox" id="paintEff4" name="paintEff1"><label for="paintEff4"> Glow</label></li>-->
 				</ul>
 
 				<ul class="list toolbox-item">
@@ -58,10 +59,6 @@
 						<i class="fas fa-camera"></i>
 					</li>
 				</ul>
-
-				<!--<ul class="toolbox-item toolbox-standalone" id=image>
-      <li class=tool0 style="margin:0.7em;"><i class="fas fa-folder-plus"></i></li>
-    </ul> -->
 			</div>
 			<div class="canvas" id="frame">
 				<canvas id="canvas"></canvas>
@@ -188,6 +185,7 @@
 				</ul>
 			</div>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>
